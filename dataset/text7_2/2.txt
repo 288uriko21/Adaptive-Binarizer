@@ -1,0 +1,18 @@
+
+font_size 26
+
+accuracy 97 ; block_size 40
+accuracy 97 ; block_size 41
+accuracy 97 ; block_size 42
+accuracy 97 ; block_size 43
+accuracy 97 ; block_size 44
+accuracy 97 ; block_size 45
+accuracy 97 ; block_size 46
+accuracy 97 ; block_size 47
+accuracy 97 ; block_size 48
+accuracy 97 ; block_size 49
+accuracy 97 ; block_size 50
+accuracy 97 ; block_size 51
+accuracy 97 ; block_size 52
+accuracy 97 ; block_size 53
+accuracy 97 ; block_size 54
