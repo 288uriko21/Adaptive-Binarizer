@@ -79,7 +79,7 @@ result.save('dataset/test/4.png')
 
 
 block_size = max(image.shape[1], image.shape[0])
-delta = round(((14400)/7) / (medIm + (20/7)))
+delta = round(((14400)/7) / ((255-medIm) + (20/7)))
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\iripa\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
 pytesseract.pytesseract.tessdata_dir_config = r'--tessdata-dir "C:\Users\iripa\AppData\Local\Programs\Tesseract-OCR\tessdata"'
