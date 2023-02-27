@@ -16,28 +16,13 @@ result = Image.fromarray(image)
 result.save('dataset/test/3.png')
 
 medIm = np.median(image)
-#
-# cropped_image = image
-#
-# i = 0.3
-# n = 10
-# for i in reversed(range(10, 50)):
-#     cropped_image = image[round(image.shape[0] * 0.01*i):round(image.shape[0] * 0.01*(100-i)), round(image.shape[1] * 0.01*i):round(image.shape[1] * 0.01*(100-i))]
-#     print(np.median(cropped_image), '  ', i*0.01)
-#     result = Image.fromarray(cropped_image)
-#     result.save('dataset/test/' + str(n) + '.png')
-#     n += 1
-# print(medIm)
 
 pred = 10
 n = 10
 left = 0
 for i in range(20, image.shape[1], 10):
     cropped_image = image[0:image.shape[0], pred:i]
-    # result = Image.fromarray(cropped_image)
-    # result.save('dataset/test/' + str(n) + '.png')
     if(np.median(cropped_image) > medIm-DELTA):
-        #print(i)
         left = i
         if (left==20):
             left = 0
@@ -50,8 +35,6 @@ top = 0
 n = 10
 for i in range(20, image.shape[0], 10):
     cropped_image = image[pred:i, 0:image.shape[1]]
-    # result = Image.fromarray(cropped_image)
-    # result.save('dataset/test/' + str(n) + '.png')
     if(np.median(cropped_image) > medIm-DELTA):
        # print(i)
         top = i
@@ -67,8 +50,6 @@ right = 0
 n = 10
 for i in reversed(range(20, image.shape[1]-10, 10)):
     cropped_image = image[0:image.shape[0], i:pred]
-    # result = Image.fromarray(cropped_image)
-    # result.save('dataset/test/' + str(n) + '.png')
     if(np.median(cropped_image) > medIm-DELTA):
         #print(i)
         right = i
@@ -83,8 +64,6 @@ low = 0
 n = 10
 for i in reversed(range(20, image.shape[0]-10, 10)):
     cropped_image = image[i:pred, 0:image.shape[1]]
-    # result = Image.fromarray(cropped_image)
-    # result.save('dataset/test/' + str(n) + '.png')
     if(np.median(cropped_image) > medIm-DELTA):
         #print(i)
         low = i
@@ -98,9 +77,8 @@ image = image[top:low, left:right]
 result = Image.fromarray(image)
 result.save('dataset/test/4.png')
 
-#medIm = np.median(image) ??
 
-block_size = max(image.shape[1], image.shape[1])
+block_size = max(image.shape[1], image.shape[0])
 delta = round(((14400)/7) / (medIm + (20/7)))
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\iripa\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
@@ -121,12 +99,6 @@ fi = open('dataset/test/1.txt', 'r', encoding="utf8")
 ideal = fi.read()
 fi.close()
 
-# lines = text2.split('\n')
-# f = open('dataset/text23/3.txt', 'w')
-# for i in lines:
-#     f.write(i + '\n')
-#     # f.write('\n')
-# f.close()
 
 a = fuzz.ratio(text, ideal)
 b = fuzz.ratio(text2, ideal)
