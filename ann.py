@@ -13,7 +13,6 @@ def deriv_sigmoid(x):
 
 
 def mse_loss(y_true, y_pred):
-    # y_true и y_pred являются массивами numpy с одинаковой длиной
     return ((y_true - y_pred) ** 2).mean()
 
 
@@ -87,9 +86,8 @@ class NeuralNetwork:
         return o1
 
     def train(self, data, all_y_trues):
-
-        learn_rate = 5
-        epochs = 5  # количество циклов во всём наборе данных
+        learn_rate = 0.7
+        epochs = 1000  # количество циклов во всём наборе данных
 
         for epoch in range(epochs):
             for x, y_true in zip(data, all_y_trues):
@@ -120,7 +118,6 @@ class NeuralNetwork:
                 y_pred = o1
 
                 # --- Подсчет частных производных
-                # --- Наименование: d_L_d_w1 представляет "частично L / частично w1"
                 d_L_d_ypred = -2 * (y_true - y_pred)
 
                 # Нейрон o1
@@ -197,7 +194,7 @@ class NeuralNetwork:
                 d_h7_d_w35 = x[4] * deriv_sigmoid(sum_h7)
                 d_h7_d_b7 = deriv_sigmoid(sum_h7)
 
-                # --- Обновляем вес и смещения
+                ###### Обновляем вес и смещения
                 # Нейрон h1
                 self.w1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w1
                 self.w2 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w2
@@ -261,9 +258,10 @@ class NeuralNetwork:
                 self.w39 -= learn_rate * d_L_d_ypred * d_ypred_d_w39
                 self.w40 -= learn_rate * d_L_d_ypred * d_ypred_d_w40
                 self.w41 -= learn_rate * d_L_d_ypred * d_ypred_d_w41
+                self.w42 -= learn_rate * d_L_d_ypred * d_ypred_d_w42
                 self.b8 -= learn_rate * d_L_d_ypred * d_ypred_d_b8
 
-            # --- Подсчитываем общую потерю в конце каждой фазы
+            # Подсчитываем общую потерю в конце каждой фазы
             y_preds = np.apply_along_axis(self.feedforward, 1, data)
             loss = mse_loss(all_y_trues, y_preds)
             print("Epoch %d loss: %.3f" % (epoch, loss))
@@ -293,5 +291,57 @@ for line in lines:
 print(data)
 print(all_y_trues)
 
-# network = NeuralNetwork()
-# network.train(data, all_y_trues)
+network = NeuralNetwork()
+network.train(data, all_y_trues)
+
+print('w1 =', network.w1, '\n')
+print('w2 =', network.w2, '\n')
+print('w3 =', network.w3, '\n')
+print('w4 =', network.w4, '\n')
+print('w5 =', network.w5, '\n')
+print('w6 =', network.w6, '\n')
+print('w7 =', network.w7, '\n')
+print('w8 =', network.w8, '\n')
+print('w9 =', network.w9, '\n')
+print('w10 =', network.w10, '\n')
+print('w11 =', network.w11, '\n')
+print('w12 =', network.w12, '\n')
+print('w13 =', network.w13, '\n')
+print('w14 =', network.w14, '\n')
+print('w15 =', network.w15, '\n')
+print('w16 =', network.w16, '\n')
+print('w17 =', network.w17, '\n')
+print('w18 =', network.w18, '\n')
+print('w19 =', network.w19, '\n')
+print('w20 =', network.w20, '\n')
+print('w21 =', network.w21, '\n')
+print('w22 =', network.w22, '\n')
+print('w23 =', network.w23, '\n')
+print('w24 =', network.w24, '\n')
+print('w25 =', network.w25, '\n')
+print('w26 =', network.w26, '\n')
+print('w27 =', network.w27, '\n')
+print('w28 =', network.w28, '\n')
+print('w29 =', network.w29, '\n')
+print('w30 =', network.w30, '\n')
+print('w31 =', network.w31, '\n')
+print('w32 =', network.w32, '\n')
+print('w33 =', network.w33, '\n')
+print('w34 =', network.w34, '\n')
+print('w35 =', network.w35, '\n')
+print('w36 =', network.w36, '\n')
+print('w37 =', network.w37, '\n')
+print('w38 =', network.w38, '\n')
+print('w39 =', network.w39, '\n')
+print('w40 =', network.w40, '\n')
+print('w41 =', network.w41, '\n')
+print('w42 =', network.w42, '\n')
+
+print('b1 =', network.b1, '\n')
+print('b2 =', network.b2, '\n')
+print('b3 =', network.b3, '\n')
+print('b4 =', network.b4, '\n')
+print('b5 =', network.b5, '\n')
+print('b6 =', network.b6, '\n')
+print('b7 =', network.b7, '\n')
+print('b8 =', network.b8, '\n')
